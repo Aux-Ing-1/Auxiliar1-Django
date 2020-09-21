@@ -1,10 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html >
+    <head>
+        <meta charset="UTF-8">
+        <title>TodoApp - Create A Todo With Django</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    </head>
+    <body>
+       <div class="container">
+           <div class="content">
+           <!-- Encabezado de la página-->
+               <h1>TodoApp</h1>
+               <p class="tagline">a Django todo app</p>
+           <!-- Fin encabezado -->
+               <form action="" method="post">
+               {% csrf_token %} <!-- csrf token for basic security -->
+                   <!-- Formulario de nueva tarea-->
+                   <div class="inputContainer">
+                       <label for="description">Description</label>
+                       <input type="text" id="description" class="taskName" placeholder="What do you need to do?" name="description" required>
+                   </div>
+                   <div class="inputContainer half last">
+                       <label for="categoria">Categoria</label>
+                       <select id="category" class="taskCategory" name="category_select">
+                       <option class="disabled" value="">Elige una categoría</option>
+                       {% for category in categorias %}
+                           <option class="" value="{{ categoria.name }}" name="{{ categoria.name }}">{{ categoria.name }}</option>
+                       {% endfor %}
+                       </select>
+                   </div>
+                    <!-- Fin formulario de nueva tarea -->
+                    <!-- Botones para agregar o eliminar tarea -->
+                   <div class="row">
+                       <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i>Agregar tarea</button>
+                       <button disabled class="taskDelete" name="taskDelete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i>Eliminar tarea</button>
+                   </div>
+                    <!-- Fin botones para agregar o eliminar tarea -->
+                     <!-- Lista de las tareas existentes -->
+                   <ul class="taskList">
+                   {% for tarea in tareas %} <!-- django template lang - for loop -->
+                       <li class="taskItem">
+                           <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ tarea.id }}" value="{{ tarea.id }}">
+                           <label for="{{ tarea.id }}"><span class="complete-">{{ tarea.title }}</span></label>
+                           <span class="categoria-{{ tarea.categoria }}">{{ tarea.categoria }}</span>
+                           <strong class="taskDate"><i class="fa fa-calendar"></i>{{ tarea.created }} - {{ tarea.due_date }}</strong>
+                       </li>
+                   {% endfor %}
+                   </ul>
+               <!-- Fin de la lista de tareas existentes-->
+               </form>
+           </div><!-- content -->
+       </div><!-- container -->
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>
+

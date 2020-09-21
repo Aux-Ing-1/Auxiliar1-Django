@@ -274,7 +274,79 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
         ```   
         Ahora si corres la aplicación y entras a `127.0.0.1/tareas` deberías ver una página en blanco.  
   
-  
-  
+    * Ahora tenemos que escribir el código para que al abrir la aplicación web se pueda ver la lista de tareas existentes y poder agregar una nueva tarea. 
+    
+        Para esto tendrás que agregar el siguiente código al archivo *todoapp/templates/todoapp/index.html*: 
+        ```html
+       <!DOCTYPE html>
+        <html >
+            <head>
+                <meta charset="UTF-8">
+                <title>TodoApp - Create A Todo With Django</title>
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+            </head>
+            <body>
+               <div class="container">
+                   <div class="content">
+                   <!-- Encabezado de la página-->
+                       <h1>TodoApp</h1>
+                       <p class="tagline">a Django todo app</p>
+                   <!-- Fin encabezado -->
+                       <form action="" method="post">
+                       {% csrf_token %} <!-- csrf token for basic security -->
+                           <!-- Formulario de nueva tarea-->
+                           <div class="inputContainer">
+                               <label for="description">Description</label>
+                               <input type="text" id="description" class="taskName" placeholder="What do you need to do?" name="description" required>
+                           </div>
+                           <div class="inputContainer half last">
+                               <label for="categoria">Categoria</label>
+                               <select id="category" class="taskCategory" name="category_select">
+                               <option class="disabled" value="">Elige una categoría</option>
+                               {% for category in categorias %}
+                                   <option class="" value="{{ categoria.name }}" name="{{ categoria.name }}">{{ categoria.name }}</option>
+                               {% endfor %}
+                               </select>
+                           </div>
+                            <!-- Fin formulario de nueva tarea -->
+                            <!-- Botones para agregar o eliminar tarea -->
+                           <div class="row">
+                               <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i>Agregar tarea</button>
+                               <button disabled class="taskDelete" name="taskDelete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i>Eliminar tarea</button>
+                           </div>
+                            <!-- Fin botones para agregar o eliminar tarea -->
+                             <!-- Lista de las tareas existentes -->
+                           <ul class="taskList">
+                           {% for tarea in tareas %} <!-- django template lang - for loop -->
+                               <li class="taskItem">
+                                   <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ tarea.id }}" value="{{ tarea.id }}">
+                                   <label for="{{ tarea.id }}"><span class="complete-">{{ tarea.title }}</span></label>
+                                   <span class="categoria-{{ tarea.categoria }}">{{ tarea.categoria }}</span>
+                                   <strong class="taskDate"><i class="fa fa-calendar"></i>{{ tarea.created }} - {{ tarea.due_date }}</strong>
+                               </li>
+                           {% endfor %}
+                           </ul>
+                       <!-- Fin de la lista de tareas existentes-->
+                       </form>
+                   </div><!-- content --> 
+               </div><!-- container -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        </body>
+        </html>
+     
+        ``` 
+      En otra clase auxiliar se estudiará en profundidad los contenidos de html, css y js necesarios para trabajar con los templates. 
+      
+      Por ahora es importante notar que hay código escrito entre doble llave `{{variable}}` 
+      y otras partes del código escritas así: `{% codigo %}`.
+      Esta es la sintaxis de los templates de Django que permite acceder a las variables que la views le envía al template,
+      y usar algunas operaciones simples como condiciones, ciclos, entre otras. 
+      Para mas información puedes leer [aquí](https://docs.djangoproject.com/en/3.1/topics/templates/#the-django-template-language). 
+      
+    * Ahora si corres la aplicación web y entras a `27.0.0.1/tareas` deberías ver el formulario para crear una tarea. 
+    
+    >Aun no creas ninguna categoría, por lo tanto la opción de categorías no mostrará nada. 
+    
+    >Por otro lado, no le has indicado al proyecto qué hacer cuando se seleccione el botón agregar tarea, por lo tanto al agregar una tarea aparecerá un error. 
   
 sdgdg
