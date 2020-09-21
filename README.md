@@ -44,11 +44,12 @@ sino que usarás un proyecto que ya está configurado con lo básico para crear 
 
     ```    
           
-## Crear la todoapp 
+## Crear una nueva app: todoapp 
 Como se explicó en la clase Django está compuesto por apps que forman las diferentes partes de la aplicación web. 
 Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llamará **todoapp**. 
 
-1. 
+1. **Crear la app**
+
     Lo primero será crear la app. Para eso haremos el siguiente comando en la consola: 
     ```
    python manage.py startapp todoapp
@@ -77,7 +78,8 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
         ├───README.md
         └───requirements.txt 
         ```                                                                                                                                                                
-2. 
+2. **Agregar la app a installed_apps**
+
     Para que el project sepa que existe esta nueva app hay que agregarla a `installed_apps` en el archivo `settings.py` de `TODOproject`. 
     
     Primero tienes que importar la app al inicio del archivo `settings.py` así : 
@@ -92,6 +94,9 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    todoapp,
+    'todoapp',
     ]
-   ```                                                                                                                                                               
+   ```        
+3. 
+   
+                                                                                                                                                          
