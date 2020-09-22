@@ -15,16 +15,20 @@
                <form action="" method="post">
                {% csrf_token %} <!-- csrf token for basic security -->
                    <!-- Formulario de nueva tarea-->
+                    <div class="form-group">
+                       <label for="titulo">Titulo de la tarea</label>
+                       <input type="text" id="titulo" class="form-control" placeholder="¿Qué tienes que hacer?" name="titulo" required>
+                   </div>
                    <div class="form-group">
-                       <label for="description">Descripción</label>
-                       <input type="text" id="description" class="form-control" placeholder="¿Qué tienes que hacer?" name="descripcion" required>
+                       <label for="contenido">Contenido</label>
+                       <textarea  id="contenido" class="form-control" placeholder="¿Describe tu tarea?" name="contenido" required></textarea>
                    </div>
                    <div class="form-group">
                        <label for="categoria">Categoria</label>
-                       <select id="category"  class="form-control" name="category_select">
+                       <select id="category"  class="form-control" name="selector_categoria">
                        <option class="disabled" value="">Elige una categoría</option>
-                       {% for category in categorias %}
-                           <option class="" value="{{ categoria.name }}" name="{{ categoria.name }}">{{ categoria.name }}</option>
+                       {% for categoria in categorias %}
+                           <option class="" value="{{ categoria.nombre }}" name="{{ categoria.nombre }}">{{ categoria.nombre }}</option>
                        {% endfor %}
                        </select>
                    </div>
@@ -40,9 +44,8 @@
                    {% for tarea in tareas %} <!-- django template lang - for loop -->
                        <li class="taskItem">
                            <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ tarea.id }}" value="{{ tarea.id }}">
-                           <label for="{{ tarea.id }}"><span class="complete-">{{ tarea.title }}</span></label>
+                           <label for="{{ tarea.id }}"><span class="complete-">{{ tarea.titulo }}</span></label>
                            <span class="categoria-{{ tarea.categoria }}">{{ tarea.categoria }}</span>
-                           <strong class="taskDate"><i class="fa fa-calendar"></i>{{ tarea.created }} - {{ tarea.due_date }}</strong>
                        </li>
                    {% endfor %}
                    </ul>

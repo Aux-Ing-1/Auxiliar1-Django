@@ -114,11 +114,11 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     
     * El primer modelo que crearás es **Categoría**, que solo tendrá un atributo nombre, para esto copia el siguiente código en *todoapp/models.py*: 
         ```python
-    class Categoria(models.Model): 
+        class Categoria(models.Model): 
         nombre = models.CharField(max_length=100)
     
         def __str__(self):
-            return self.name #name to be shown when called
+            return self.nombre #name to be shown when called
 
        ```
        > La clase Category hereda de models.Model para tener todas las características de un model de Django. 
@@ -126,26 +126,30 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
        > El atributo nombre será un CharField con un largo máximo de 100 caracteres. [Aquí](https://docs.djangoproject.com/en/3.1/ref/models/fields/#field-types)  hay mas información sobre Fields.  
     
        > El método _ _ str_ _ permite definir como se mostrará una categoría al imprmirla. 
+   
    * Ahora vas a crear el modelo Tarea con todos sus atributos, para esto copia el siguiente código abajo del modelo Categoría:
         ```python
-    from django.utils import timezone
+     from django.utils import timezone
 
-    class Tarea(models.Model): #Todolist able name that inherits models.Model
-       titulo = models.CharField(max_length=250) # un varchar
-       contenido = models.TextField(blank=True) # un text 
-       fecha_creación = models.DateField(default=timezone.now().strftime("%Y-%m-%d")) # un date
-       categoría = models.ForeignKey(Categoria, default="general", on_delete=models.SET_DEFAULT) # la llave foránea
+        class Tarea(models.Model):  # Todolist able name that inherits models.Model
+        titulo = models.CharField(max_length=250)  # un varchar
+        contenido = models.TextField(blank=True)  # un text
+        fecha_creación = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))  # un date
+        categoria = models.ForeignKey(Categoria, default="general", on_delete=models.CASCADE)  # la llave foránea
     
-       def __str__(self):
-           return self.title #name to be shown when called
-        ```   
-     > En este modelo utilizamos atributos de diferentes tipos como texto y fechas. 
+        def __str__(self):
+            return self.titulo  # name to be shown when called
+        ```
+   
+        .
+    
+        >En este modelo utilizamos atributos de diferentes tipos como texto y fechas. 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-     > La variable blank=True en el atributo `contenido` indica que este atributo puede estar en blanco. 
+        > La variable blank=True en el atributo `contenido` indica que este atributo puede estar en blanco. 
     
-     > La variable default = ... en el atributo `fecha_creacion` indica que si no se entrega una fecha de creación, por defecho se pondrá la fecha actual.   
+        > La variable default = ... en el atributo `fecha_creacion` indica que si no se entrega una fecha de creación, por defecho se pondrá la fecha actual.   
     
-     > Para crear una llave foránea utilizamos `models.ForeignKey` y hay que entregar el modelo que será la llave foránea y una opción de `on_delete`. [Información sobre on_delete](https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.ForeignKey.on_delete)  
+        > Para crear una llave foránea utilizamos `models.ForeignKey` y hay que entregar el modelo que será la llave foránea y una opción de `on_delete`. [Información sobre on_delete](https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.ForeignKey.on_delete)  
     
    * El último paso es agregar estos modelos a la base de datos del proyecto. Para esto hay que seguir dos pasos: crear las migraciones y migrar.
     
@@ -171,7 +175,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
             ```  
           También debes incluir el método include en el archivo, para esto agrega la siguiente línea al inicio de *TODOproject/urls.py*: 
             ```python
-              from django.urls import include
+          from django.urls import include
             ```    
         * Ahora hay que crear las urls de la todoapp. Lo que harás es crear una url para que cuando alguien ingrese a 
         `127.0.0.1/tareas` pueda ver sus tareas. 
@@ -196,18 +200,18 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     
     En el archivo *todoapp/views.py* tendrás que pegar este código que explicaré luego: 
     ```python
-    from django.shortcuts import render, redirect
+   from django.shortcuts import render, redirect
 
-    # Create your views here.
-    from todoapp.models import Tarea, Categoria
+   # Create your views here.
+   from todoapp.models import Tarea, Categoria
     
     
-    def tareas(request): #the index view
-       tareas = Tarea.objects.all()  # quering all todos with the object manager
+   def tareas(request): #the index view
+       mis_tareas = Tarea.objects.all()  # quering all todos with the object manager
        categorias = Categoria.objects.all()  # getting all categories with object manager
     
        if request.method == "GET":
-           return render(request, "todoapp/index.html", {"tareas": tareas, "categorias": categorias})
+           return render(request, "todoapp/index.html", {"tareas": mis_tareas, "categorias": categorias})
 
     ```
    Los métodos de las views siempre deben recibir una request, porque ahí se encuentra la información de la request HTTP.
@@ -278,62 +282,64 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     
         Para esto tendrás que agregar el siguiente código al archivo *todoapp/templates/todoapp/index.html*: 
         ```html
-       <!DOCTYPE html>
+        <!DOCTYPE html>
         <html >
-            <head>
-                <meta charset="UTF-8">
-                <title>TodoApp - Create A Todo With Django</title>
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-            </head>
-            <body>
-               <div class="container">
-                   <div class="content">
-                   <!-- Encabezado de la página-->
-                       <h1>TodoApp</h1>
-                       <p class="tagline">a Django todo app</p>
-                   <!-- Fin encabezado -->
-                       <form action="" method="post">
-                       {% csrf_token %} <!-- csrf token for basic security -->
-                           <!-- Formulario de nueva tarea-->
-                           <div class="inputContainer">
-                               <label for="description">Description</label>
-                               <input type="text" id="description" class="taskName" placeholder="What do you need to do?" name="description" required>
-                           </div>
-                           <div class="inputContainer half last">
-                               <label for="categoria">Categoria</label>
-                               <select id="category" class="taskCategory" name="category_select">
-                               <option class="disabled" value="">Elige una categoría</option>
-                               {% for category in categorias %}
-                                   <option class="" value="{{ categoria.name }}" name="{{ categoria.name }}">{{ categoria.name }}</option>
-                               {% endfor %}
-                               </select>
-                           </div>
-                            <!-- Fin formulario de nueva tarea -->
-                            <!-- Botones para agregar o eliminar tarea -->
-                           <div class="row">
-                               <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i>Agregar tarea</button>
-                               <button disabled class="taskDelete" name="taskDelete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i>Eliminar tarea</button>
-                           </div>
-                            <!-- Fin botones para agregar o eliminar tarea -->
-                             <!-- Lista de las tareas existentes -->
-                           <ul class="taskList">
-                           {% for tarea in tareas %} <!-- django template lang - for loop -->
-                               <li class="taskItem">
-                                   <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ tarea.id }}" value="{{ tarea.id }}">
-                                   <label for="{{ tarea.id }}"><span class="complete-">{{ tarea.title }}</span></label>
-                                   <span class="categoria-{{ tarea.categoria }}">{{ tarea.categoria }}</span>
-                                   <strong class="taskDate"><i class="fa fa-calendar"></i>{{ tarea.created }} - {{ tarea.due_date }}</strong>
-                               </li>
-                           {% endfor %}
-                           </ul>
-                       <!-- Fin de la lista de tareas existentes-->
-                       </form>
-                   </div><!-- content --> 
-               </div><!-- container -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        </body>
+          <head>
+              <meta charset="UTF-8">
+              <title>TodoApp - Create A Todo With Django</title>
+              <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+          </head>
+          <body>
+              <div class="container" style="margin-top: 2em">
+
+                  <!-- Encabezado de la página-->
+                  <h1>TodoApp</h1>
+                  <p class="tagline">a Django todo app</p>
+                  <!-- Fin encabezado -->
+                  <form action="" method="post">
+                      {% csrf_token %} <!-- csrf token for basic security -->
+                      <!-- Formulario de nueva tarea-->
+                      <div class="form-group">
+                          <label for="titulo">Titulo de la tarea</label>
+                          <input type="text" id="titulo" class="form-control" placeholder="¿Qué tienes que hacer?" name="titulo" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="contenido">Contenido</label>
+                          <textarea  id="contenido" class="form-control" placeholder="¿Describe tu tarea?" name="contenido" required></textarea>
+                      </div>
+                      <div class="form-group">
+                          <label for="categoria">Categoria</label>
+                          <select id="category"  class="form-control" name="selector_categoria">
+                              <option class="disabled" value="">Elige una categoría</option>
+                              {% for categoria in categorias %}
+                                  <option class="" value="{{ categoria.nombre }}" name="{{ categoria.nombre }}">{{ categoria.nombre }}</option>
+                              {% endfor %}
+                          </select>
+                      </div>
+                      <!-- Fin formulario de nueva tarea -->
+                      <!-- Botones para agregar o eliminar tarea -->
+                      <div class="row">
+                          <button class="btn btn-primary" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i>Agregar tarea</button>
+                          <button disabled class="btn btn-danger" name="taskDelete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i>Eliminar tarea</button>
+                      </div>
+                      <!-- Fin botones para agregar o eliminar tarea -->
+                      <!-- Lista de las tareas existentes -->
+                      <ul class="list-group">
+                          {% for tarea in tareas %} <!-- django template lang - for loop -->
+                              <li class="listGroup">
+                                  <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ tarea.id }}" value="{{ tarea.id }}">
+                                  <label for="{{ tarea.id }}"><span class="complete-">{{ tarea.titulo }}</span></label>
+                                  <span class="categoria-{{ tarea.categoria }}">{{ tarea.categoria }}</span>
+                              </li>
+                          {% endfor %}
+                      </ul>
+                      <!-- Fin de la lista de tareas existentes-->
+                  </form>
+              </div><!-- container -->
+
+              <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          </body>
         </html>
-     
         ``` 
       En otra clase auxiliar se estudiará en profundidad los contenidos de html, css y js necesarios para trabajar con los templates. 
       
@@ -345,8 +351,89 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
       
     * Ahora si corres la aplicación web y entras a `27.0.0.1/tareas` deberías ver el formulario para crear una tarea. 
     
-    >Aun no creas ninguna categoría, por lo tanto la opción de categorías no mostrará nada. 
+        >Aun no creas ninguna categoría, por lo tanto la opción de categorías no mostrará nada. 
     
-    >Por otro lado, no le has indicado al proyecto qué hacer cuando se seleccione el botón agregar tarea, por lo tanto al agregar una tarea aparecerá un error. 
-  
-sdgdg
+        >Por otro lado, no le has indicado al proyecto qué hacer cuando se seleccione el botón agregar tarea, por lo tanto al agregar una tarea aparecerá un error. 
+
+    7.1 **Entender formulario html**
+   
+    A continuación se encuentra la estructura que tiene un formulario en HTML y para qué sirve cada línea. 
+    Es importante tener una noción de cómo funcionan estos formularios para entender como procesarlos en `views.py`.
+    ```html
+       <form action="" method="post"> <!-- Inicio del form, la información se enviará por POST -->
+           {% csrf_token %} <!-- csrf token para seguridad -->
+           <div class="form-group"> <!--div solo sirve para estructurar información, no aporta funcionalidad -->
+               <label for="description">Descripción</label> <!-- Label será la etiqueta que aparece al lado de un elemento del formulario --> 
+               <!-- Input representa un elemento donde la persona ingresa información, es muy importante el name, porque este será la llave para acceder a la información del form en la view.  -->  
+               <input type="text" id="description" class="form-control" placeholder="¿Qué tienes que hacer?" name="descripcion" required>     
+           </div>
+           <button class="btn btn-primary" name="taskAdd" type="submit">Agregar tarea</button> <!-- Este botón sirve para enviar el formulario ya que es de tipo submit. El campo class solo indica el estilo que tendrá el botón -->
+       </form>
+    ```
+        
+8. **Agregar tarea en views.py**  
+    
+    El template que creaste en el paso anterior contiene un formulario para agregar nuevas tareas, 
+    así que en este paso vas a crear el código para que esto funcione. 
+    
+    Como para cargar página se utilizó el método `tareas` de `views.py` para recibir el formulario se utilizará el mismo método. 
+    En general, los formularios se envían por POST por lo tanto en el método `tareas` podremos tomar la información del formulario solo si `request.method=="POST"`. 
+    
+    Ahora crearás un código que verifica si la request fue de tipo POST 
+    y luego tomará el título, el contenido y la categoría que vienen en el formulario para crear una nueva Tarea en la base de datos. 
+    
+    Para obtener a la información del formulario tienes que acceder a `request.POST` que será un diccionario como el que está a continuación: 
+    ```json
+     {
+       "csrfmiddlewaretoken": ["uncodigosecreto"], 
+       "titulo": ["mi super tarea"], 
+       "contenido": ["Tengo que preparar la auxiliar para el miercoles"], 
+       "selector_categoria": ["auxiliar"], 
+       "taskAdd": [""]
+   }
+   ```
+    
+    Agrega este código al método `tareas` de `todoapp/views.py`:
+    ```python
+    if request.method == "POST":  # revisar si el método de la request es POST
+        if "taskAdd" in request.POST:  # verificar si la request es para agregar una tarea (esto está definido en el button)
+            titulo = request.POST["titulo"]  # titulo de la tarea
+            
+            nombre_categoria = request.POST["selector_categoria"]  # nombre de la categoria
+            categoria = Categoria.objects.get(nombre=nombre_categoria)  # buscar la categoría en la base de datos
+            
+            contenido = request.POST["contenido"]  # contenido de la tarea
+            
+            nueva_tarea = Tarea(titulo=titulo, contenido=contenido, categoria=categoria)  # Crear la tarea
+            nueva_tarea.save()  # guardar la tarea en la base de datos.
+   
+            return redirect("/tareas")  # recargar la página.
+
+    ```
+    En el código anterior si la request es POST y si la persona seleccionó *Agregar tarea*, 
+    se tomará cada valor que venía en el formulario y se creará la nueva tarea. 
+    
+     > Es importante destacar que en el código hay una variable llamada `nombre_categoria` y otra llamada `categoria`, 
+    la primera será el valor que se envía en el formulario y corresponde al nombre de la categoría ya que así lo definimos al poner `value="{{ categoria.name }}"` en las opciones del form: 
+     
+     > `<option class="" value="{{ categoria.name }}" name="{{ categoria.name }}">{{ categoria.name }}</option>`
+     
+     > La segunda corresponde a una instancia del modelo Categoria, que será la llave foránea de nuestra nueva Tarea. 
+    
+9. **Probar la aplicación** 
+    
+    Ahora si corres la aplicación con `python manage.py runserver` y entras a `127.0.0.1/tareas` verás la aplicación web funcionando 
+    y podrás agregar tareas.  
+    
+## Extra: Acceder al admin de Django
+En `todoapp/admin.py` registrar los modelos con el siguiente código: 
+```python
+from todoapp.models import Categoria, Tarea
+
+admin.site.register(Categoria)
+admin.site.register(Tarea)
+```
+En la consola hacer: `python manage.py createsuperuser` y crear un superusarie que podrá acceder al panel de administrador y editar elementos de la base de datos. 
+
+Finalmente correr la aplicación web y entrar a 127.0.0.1/admin y loguearse con la cuenta recién creada. 
+## Extra 2: Eliminar tareas
