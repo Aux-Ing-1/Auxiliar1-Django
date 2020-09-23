@@ -2,7 +2,8 @@
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from todoapp.models import Tarea, Categoria
+from todoapp.models import Tarea
+from categorias.models import Categoria
 
 
 def tareas(request):  # the index view
