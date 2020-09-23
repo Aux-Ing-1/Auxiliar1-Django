@@ -234,7 +234,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     y le entrega las tareas y categorías de la base de datos al template.
     
     Para comprobar que no tenemos errores en este paso tendrás que correr la aplicación y entrar a la url *tareas*. 
-    Para esto en la consola debes hacer `python manage.py runserver` y entrar al link `127.0.0.1/tareas`. 
+    Para esto en la consola debes hacer `python manage.py runserver` y entrar al link `127.0.0.1:8000/tareas`. 
     
     Como aún no creamos un template llamado *index.html* deberías ver lo siguiente: 
     
@@ -350,7 +350,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
       y usar algunas operaciones simples como condiciones, ciclos, entre otras. 
       Para mas información puedes leer [aquí](https://docs.djangoproject.com/en/3.1/topics/templates/#the-django-template-language). 
       
-    * Ahora si corres la aplicación web y entras a `27.0.0.1/tareas` deberías ver el formulario para crear una tarea. 
+    * Ahora si corres la aplicación web y entras a `127.0.0.1:8000/tareas` deberías ver el formulario para crear una tarea. 
     
         >Aun no creas ninguna categoría, por lo tanto la opción de categorías no mostrará nada. 
     
@@ -423,7 +423,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     
 9. **Probar la aplicación** 
     
-    Ahora si corres la aplicación con `python manage.py runserver` y entras a `127.0.0.1/tareas` verás la aplicación web funcionando 
+    Ahora si corres la aplicación con `python manage.py runserver` y entras a `127.0.0.1:8000/tareas` verás la aplicación web funcionando 
     y podrás agregar tareas.  
     
 ## Extra: Acceder al admin de Django
