@@ -1,5 +1,10 @@
 # Auxiliar2-Django
-PONER una imagen de lo que haremos y una descripción de la app. 
+En esta auxiliar crearás una aplicación web que permitirá mostrar una lista de tareas. 
+Estas tareas tendrán una categoría que luego podrían servir para hacer algún filtro. 
+
+La aplicación tendrá una sola página y se verá así: 
+![app final](app_final.png)
+
 ## Configuración del ambiente de trabajo
 El primer paso en esta auxiliar será crear un ambiente virtual donde estará toda la configuración de Python 
 para este proyecto en específico. 
