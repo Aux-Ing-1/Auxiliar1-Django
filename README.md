@@ -224,11 +224,11 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
    Como estamos cargando la página, la request que la aplicación recibe es de tipo GET, 
    y queremos que al recibir una request de este tipo se haga render de la página, es decir, mostrar la página de tareas.  
    
-   El último parámetro del método render es un diccionario con toda la información que la view le entregará al template que vamos a cargar (que en este caso aun no existe). 
+   El último parámetro del método `render` es un diccionario con toda la información que la view le entregará al template que vamos a cargar (que en este caso aun no existe). 
 
 6. **Recapitulemos** 
     
-   Hasta ahora hemos creado *el modelos* Tarea,
+   Hasta ahora hemos creado *el modelo* Tarea,
     *una url* llamada *tareas*, y 
     *una view* que permite hacer render de un template (que aun no creamos) 
     y le entrega las tareas y categorías de la base de datos al template.
