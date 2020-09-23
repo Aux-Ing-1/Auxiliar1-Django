@@ -115,7 +115,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
    ```        
 3. **Crear modelo Tarea**
     Para crear la aplicación de lista de tareas debemos crear un *modelo* 
-    que permitirá definir la información que guardaremos de cada elemento.
+    que permitirá definir la información que guardaremos sobre cada Tarea.
     
     Los modelos se guardan en el archivo *todoapp/models.py*.
     En este caso crearemos un modelo llamado Tarea que tendrá un *título*, *contenido*, *fecha de creación* y *categoría*.
