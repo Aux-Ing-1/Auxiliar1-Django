@@ -1,6 +1,7 @@
 # Auxiliar2-Django
 En esta auxiliar crearás una aplicación web que permitirá mostrar una lista de tareas. 
 Estas tareas tendrán una categoría que luego podrían servir para hacer algún filtro. 
+La informacion de las categorias viene pre-hecha y la base de datos ya contiene algunas categorias. 
 
 La aplicación tendrá una sola página y se verá así: 
 ![app final](app_final.png)
@@ -13,10 +14,10 @@ Al tener el ambiente virtual activado, vuelve aquí para el siguiente paso.
 
 ## Descargar e instalar TODO Project 
 En la auxiliar de hoy no vas a comenzar un proyecto de Django desde 0 
-sino que usarás un proyecto que ya está configurado con lo básico para crear el **TODO Project**.  
+sino que usarás un proyecto que ya está configurado con lo básico para crear la aplicacion web de tareas.   
 
 1. 
-    La primera tareas es hacer Fork y Clone de [este repositorio](https://github.com/Aux-Ing-1/Auxiliar2-Django). 
+    La primera tarea es hacer Fork y Clone de [este repositorio](https://github.com/Aux-Ing-1/Auxiliar2-Django). 
     > Si no recuerdas como hacerlo puedes revisar la [auxiliar de GIT](https://github.com/Aux-Ing-1/Auxiliar1-GIT). 
 2. 
     Para entrar a la carpeta donde está el proyecto hay que hacer `cd Auxiliar2-Django` en la consola. 
