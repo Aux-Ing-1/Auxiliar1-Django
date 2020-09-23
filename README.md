@@ -178,7 +178,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
           from django.urls import include
             ```    
         * Ahora hay que crear las urls de la todoapp. Lo que harás es crear una url para que cuando alguien ingrese a 
-        `127.0.0.1/tareas` pueda ver sus tareas. 
+        `127.0.0.1:8000/tareas` pueda ver sus tareas. 
             
             Para esto hay que crear un archivo llamado `urls.py` en la carpeta `todoapp`. En este archivo escribirás el siguiente código: 
             ```python
@@ -277,7 +277,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
         ├───README.md
         └───requirements.txt 
         ```   
-        Ahora si corres la aplicación y entras a `127.0.0.1/tareas` deberías ver una página en blanco.  
+        Ahora si corres la aplicación y entras a `127.0.0.1:8000/tareas` deberías ver una página en blanco.  
   
     * Ahora tenemos que escribir el código para que al abrir la aplicación web se pueda ver la lista de tareas existentes y poder agregar una nueva tarea. 
     
@@ -438,6 +438,6 @@ admin.site.register(Tarea)
 En la consola hacer: `python manage.py createsuperuser` y crear un superusarie que podrá acceder al panel de administrador y editar elementos de la base de datos. 
 
 
-Finalmente correr la aplicación web y entrar a 127.0.0.1/admin y loguearse con la cuenta recién creada. 
+Finalmente correr la aplicación web y entrar a 127.0.0.1:8000/admin y loguearse con la cuenta recién creada. 
 
 ## Extra 2: Eliminar tareas
