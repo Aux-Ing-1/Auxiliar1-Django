@@ -45,6 +45,7 @@ sino que usarás un proyecto que ya está configurado con lo básico para crear 
     │   │ urls.py
     │   │ wsgi.py
     │   │ __init__.py
+    ├───categorias  
     ├───db.sqlite3
     ├───README.md
     └───requirements.txt 
@@ -82,6 +83,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
         │   ├───views.py
         │   ├───__init__.py
         ├───db.sqlite3
+        ├───categorias  
         ├───README.md
         └───requirements.txt 
         ```                                                                                                                                                                
@@ -90,7 +92,8 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     Para que el project sepa que existe esta nueva app hay que agregarla a `installed_apps` en el archivo `settings.py` de `TODOproject`. 
     
     Primero tienes que importar la app al inicio del archivo `settings.py` así : 
-        ```import todoapp```
+       
+    `import todoapp`
     
     Y luego agregarla a la variable `installed_apps` para que quede así:
     ```
@@ -101,37 +104,24 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'categorias'
     'todoapp',
     ]
    ```        
-3. **Crear modelos Tarea y Categoría**
-    Para crear aplicación de lista de tareas debemos crear un *modelo* 
+3. **Crear modelo Tarea**
+    Para crear la aplicación de lista de tareas debemos crear un *modelo* 
     que permitirá definir la información que guardaremos de cada elemento.
     
     Los modelos se guardan en el archivo *todoapp/models.py*.
     En este caso crearemos un modelo llamado Tarea que tendrá un *título*, *contenido*, *fecha de creación* y *categoría*.
-    La categoría será una llave foránea al modelo Categoría.  
+    La categoría será una llave foránea al modelo Categoría de la app categorías (que venía pre hecha).  
     
-    * El primer modelo que crearás es **Categoría**, que solo tendrá un atributo nombre, para esto copia el siguiente código en *todoapp/models.py*: 
-        ```python
-        class Categoria(models.Model): 
-        nombre = models.CharField(max_length=100)
-    
-        def __str__(self):
-            return self.nombre #name to be shown when called
-
-       ```
-       > La clase Category hereda de models.Model para tener todas las características de un model de Django. 
-    
-       > El atributo nombre será un CharField con un largo máximo de 100 caracteres. [Aquí](https://docs.djangoproject.com/en/3.1/ref/models/fields/#field-types)  hay mas información sobre Fields.  
-    
-       > El método _ _ str_ _ permite definir como se mostrará una categoría al imprmirla. 
-   
-   * Ahora vas a crear el modelo Tarea con todos sus atributos, para esto copia el siguiente código abajo del modelo Categoría:
+   * El primer modelo que crearás es el modelo Tarea con todos sus atributos, para esto copia el siguiente código en `todoapp/models.py`:
         ```python
      from django.utils import timezone
+     from categorias.models import Categoria
 
-        class Tarea(models.Model):  # Todolist able name that inherits models.Model
+     class Tarea(models.Model):  # Todolist able name that inherits models.Model
         titulo = models.CharField(max_length=250)  # un varchar
         contenido = models.TextField(blank=True)  # un text
         fecha_creación = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))  # un date
@@ -142,8 +132,11 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
         ```
    
         .
+        > La clase Tarea hereda de models.Model para tener todas las características de un model de Django. 
     
-        >En este modelo utilizamos atributos de diferentes tipos como texto y fechas. 
+        > El atributo titulo será un CharField con un largo máximo de 250 caracteres. [Aquí](https://docs.djangoproject.com/en/3.1/ref/models/fields/#field-types)  hay mas información sobre Fields.  
+    
+        > En este modelo utilizamos atributos de diferentes tipos como texto y fechas. 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
         > La variable blank=True en el atributo `contenido` indica que este atributo puede estar en blanco. 
     
@@ -151,7 +144,9 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     
         > Para crear una llave foránea utilizamos `models.ForeignKey` y hay que entregar el modelo que será la llave foránea y una opción de `on_delete`. [Información sobre on_delete](https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.ForeignKey.on_delete)  
     
-   * El último paso es agregar estos modelos a la base de datos del proyecto. Para esto hay que seguir dos pasos: crear las migraciones y migrar.
+        > El método _ _ str_ _ permite definir como se mostrará una categoría al imprmirla. 
+   
+   * El siguiente paso es agregar este modelos a la base de datos del proyecto. Para esto hay que seguir dos pasos: crear las migraciones y migrar.
     
         >Según la documentación oficial "Las migraciones son la forma que tiene Django de propagar cambios que le hacemos a los modelos hacia la base de datos". 
         
@@ -203,7 +198,8 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
    from django.shortcuts import render, redirect
 
    # Create your views here.
-   from todoapp.models import Tarea, Categoria
+   from todoapp.models import Tarea
+   from categorias.models import Categoria
     
     
    def tareas(request): #the index view
@@ -227,7 +223,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
 
 6. **Recapitulemos** 
     
-   Hasta ahora hemos creado *los modelos* Tarea y Categoria,
+   Hasta ahora hemos creado *el modelos* Tarea,
     *una url* llamada *tareas*, y 
     *una view* que permite hacer render de un template (que aun no creamos) 
     y le entrega las tareas y categorías de la base de datos al template.
@@ -246,7 +242,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     
         Después, hay que crear una carpeta llamada todoapp, dentro de la carpeta templates que recién creamos. 
         
-        Esto lo hacemos así para distinguir entre las diferentes carpetas templates de las diferentes aplicaciones que tenga la aplicación web. 
+        Esto lo hacemos así para distinguir entre las diferentes carpetas templates de las diferentes aplicaciones que tenga el mismo projecto Django. 
         
         Finalmente hay que crear un archivo vacío llamado `index.html` en la carpeta todospp/templates/todoapp/.
         
@@ -428,12 +424,15 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
 ## Extra: Acceder al admin de Django
 En `todoapp/admin.py` registrar los modelos con el siguiente código: 
 ```python
-from todoapp.models import Categoria, Tarea
+from todoapp.models import  Tarea
 
-admin.site.register(Categoria)
 admin.site.register(Tarea)
+
 ```
+
 En la consola hacer: `python manage.py createsuperuser` y crear un superusarie que podrá acceder al panel de administrador y editar elementos de la base de datos. 
 
+
 Finalmente correr la aplicación web y entrar a 127.0.0.1/admin y loguearse con la cuenta recién creada. 
+
 ## Extra 2: Eliminar tareas
