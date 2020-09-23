@@ -325,14 +325,14 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
                       <!-- Fin botones para agregar o eliminar tarea -->
                       <!-- Lista de las tareas existentes -->
                       <ul class="list-group">
-                          {% for tarea in tareas %} <!-- django template lang - for loop -->
-                              <li class="listGroup">
-                                  <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ tarea.id }}" value="{{ tarea.id }}">
-                                  <label for="{{ tarea.id }}"><span class="complete-">{{ tarea.titulo }}</span></label>
-                                  <span class="categoria-{{ tarea.categoria }}">{{ tarea.categoria }}</span>
-                              </li>
-                          {% endfor %}
-                      </ul>
+                       {% for tarea in tareas %} <!-- django template lang - for loop -->
+                           <li class="list-group-item">
+                               <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ tarea.id }}" value="{{ tarea.id }}">
+                               <label for="{{ tarea.id }}"><span class="complete-"><b>Título: </b>{{ tarea.titulo }}</span></label>
+                               <span class="categoria-{{ tarea.categoria }}"><b>Categoría: </b>{{ tarea.categoria }}</span>
+                           </li>
+                       {% endfor %}
+                   </ul>
                       <!-- Fin de la lista de tareas existentes-->
                   </form>
               </div><!-- container -->

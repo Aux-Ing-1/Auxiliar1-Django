@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import mimetypes
 
-import todoapp
-
 mimetypes.add_type("text/css", ".css", True)
 
 
@@ -43,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'todoapp',
+    'categorias',
 ]
 
 MIDDLEWARE = [
