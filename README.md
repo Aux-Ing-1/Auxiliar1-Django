@@ -352,7 +352,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
       
     * Ahora si corres la aplicación web y entras a `127.0.0.1:8000/tareas` deberías ver el formulario para crear una tarea. 
     
-        >Aun no creas ninguna categoría, por lo tanto la opción de categorías no mostrará nada. 
+        >Las categorias que aparecen ahí fueron creadas en el proyecto original que descargaste. Al final de la auxiliar podrás ver como editarlas y agregar nuevas.  
     
         >Por otro lado, no le has indicado al proyecto qué hacer cuando se seleccione el botón agregar tarea, por lo tanto al agregar una tarea aparecerá un error. 
 
