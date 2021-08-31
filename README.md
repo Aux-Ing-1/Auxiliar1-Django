@@ -1,18 +1,18 @@
 # Auxiliar2-Django
 En esta auxiliar crearás una aplicación web que permitirá mostrar una lista de tareas. 
 Estas tareas tendrán una categoría que luego podrían servir para hacer algún filtro. 
-La informacion de las categorias viene pre-hecha y la base de datos ya contiene algunas categorias. 
+La información de las categorías viene pre-hecha y la base de datos ya contiene algunas categorías. 
 
 La aplicación tendrá una sola página y se verá así: 
 ![app final](app_final.png)
 
-## Configuración del ambiente de trabajo
+## Configuración del Ambiente de Trabajo
 El primer paso en esta auxiliar será crear un ambiente virtual donde estará toda la configuración de Python 
 para este proyecto en específico. 
 Dado que DjangoGirls explica muy bien cómo hacer esto, debes seguir los pasos de [este tutorial](https://tutorial.djangogirls.org/es/django_installation/) hasta donde activan el ambiente virtual. 
 Al tener el ambiente virtual activado, vuelve aquí para el siguiente paso. 
 
-## Descargar e instalar TODO Project 
+## Descargar e Instalar TODO Project 
 En la auxiliar de hoy no vas a comenzar un proyecto de Django desde 0 
 sino que usarás un proyecto que ya está configurado con lo básico para crear la aplicacion web de tareas.   
 
