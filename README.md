@@ -17,7 +17,7 @@ En la auxiliar de hoy no vas a comenzar un proyecto de Django desde 0
 sino que usarás un proyecto que ya está configurado con lo básico para crear la aplicación web de tareas.   
 
 1. 
-    La primera tarea es hacer Fork y Clone de [este repositorio](https://github.com/Aux-Ing-1/Auxiliar2-Django). 
+    La primera tarea es hacer Fork y Clone de este mismo repositorio. 
     > Si no recuerdas cómo hacerlo puedes revisar la [auxiliar de GIT](https://github.com/Aux-Ing-1/Auxiliar1-GIT). 
 2. 
     Para entrar a la carpeta donde está el proyecto hay que hacer `cd Auxiliar2-Django` en la consola. 
