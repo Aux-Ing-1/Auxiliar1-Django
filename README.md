@@ -174,7 +174,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
             ```python
             path('', include('todoapp.urls'))
             ```  
-          También debes incluir el método include en el archivo, para esto agrega la siguiente línea al inicio de *TODOproject/urls.py*: 
+          También debes incluir el método `include` en el archivo, para esto agrega la siguiente línea al inicio de *TODOproject/urls.py*: 
             ```python
           from django.urls import include
             ```    
@@ -194,12 +194,12 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
             El método `path` hará un mapeo entre el patrón de la URL,
          *en este caso 'tareas'*, con el método `tareas` de views.py, para saber qué hacer cuando alguien ingrese a esta URL. 
                 
-5. **Crear views** 
+5. **Crear Views** 
 
-    En el paso anterior creaste una url 'tareas' que está "mapeada" con el método tareas de views.py. 
+    En el paso anterior creaste una URL 'tareas' que está "mapeada" con el método tareas de views.py. 
     Es por esto que ahora crearás este método para que cargue una interfaz que muestra todas las tareas guardadas. 
     
-    En el archivo *todoapp/views.py* tendrás que pegar este código que explicaré luego: 
+    En el archivo *todoapp/views.py* tendrás que pegar este código que explicaremos luego: 
     ```python
    from django.shortcuts import render, redirect
 
@@ -220,10 +220,10 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
    
    En este caso, la view tendrá una variable tareas que tendrá todas las tareas de la base de datos. 
    Y otra variable categorias que tendrá todas las categorías de la base de datos. 
-   >En la próxima auxiliar estudiaremos un poco mas en detalle como acceder a elementos de la base de datos. 
+   >En la próxima auxiliar estudiaremos un poco más en detalle cómo acceder a elementos de la base de datos. 
    
    Como estamos cargando la página, la request que la aplicación recibe es de tipo GET, 
-   y queremos que al recibir una request de este tipo se haga render de la página, es decir, mostrar la página de tareas.  
+   y queremos que al recibir una request de este tipo se haga render de la página, es decir, se muestre la página de tareas.  
    
    El último parámetro del método `render` es un diccionario con toda la información que la view le entregará al template que vamos a cargar (que en este caso aún no existe). 
 
