@@ -116,7 +116,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
    ```        
 3. **Crear Modelo Tarea**
     Para crear la aplicación de lista de tareas debemos crear un *modelo* 
-    que permitirá definir la información que guardaremos sobre cada Tarea.
+    que defina la información que guardaremos sobre cada Tarea.
     
     Los modelos se guardan en el archivo *todoapp/models.py*.
     En este caso crearemos un modelo llamado Tarea que tendrá un *título*, *contenido*, *fecha de creación* y *categoría*.
@@ -140,23 +140,23 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
         .
         > La clase Tarea hereda de models.Model para tener todas las características de un model de Django. 
     
-        > El atributo titulo será un CharField con un largo máximo de 250 caracteres. [Aquí](https://docs.djangoproject.com/en/3.1/ref/models/fields/#field-types)  hay mas información sobre Fields.  
+        > El atributo título será un CharField con un largo máximo de 250 caracteres. [Aquí](https://docs.djangoproject.com/en/3.1/ref/models/fields/#field-types)  hay mas información sobre Fields.  
     
         > En este modelo utilizamos atributos de diferentes tipos como texto y fechas. 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
         > La variable blank=True en el atributo `contenido` indica que este atributo puede estar en blanco. 
     
-        > La variable default = ... en el atributo `fecha_creacion` indica que si no se entrega una fecha de creación, por defecho se pondrá la fecha actual.   
+        > La variable default = ... en el atributo `fecha_creacion` indica que si no se entrega una fecha de creación, por defecto se pondrá la fecha actual.   
     
         > Para crear una llave foránea utilizamos `models.ForeignKey` y hay que entregar el modelo que será la llave foránea y una opción de `on_delete`. [Información sobre on_delete](https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.ForeignKey.on_delete)  
     
-        > El método _ _ str_ _ permite definir como se mostrará una categoría al imprmirla. 
+        > El método _ _ str_ _ permite definir cómo se mostrará una categoría al imprmirla. 
    
-   * El siguiente paso es agregar este modelos a la base de datos del proyecto. Para esto hay que seguir dos pasos: crear las migraciones y migrar.
+   * El siguiente paso es agregar este modelo a la base de datos del proyecto. Para esto hay que seguir dos pasos: crear las migraciones y migrar.
     
         >Según la documentación oficial "Las migraciones son la forma que tiene Django de propagar cambios que le hacemos a los modelos hacia la base de datos". 
         
-        Para hacer esto haremos los siguientes comandos en la terminal: 
+        Para hacer esto pondremos los siguientes comandos en la terminal: 
         ```
             python manage.py makemigrations
             python manage.py migrate
@@ -165,11 +165,11 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
        con todos los cambios que hiciste a los modelos. 
      
     No agregaremos elementos a la base de datos aún, sino que seguiremos creando la aplicación para ver la lista de tareas. 
-  4. **Crear urls**
+  4. **Crear URLs**
      
-     Como vimos en la primera parte de la clase, las urls determinan "por donde se puede entrar" a la aplicación web, es por esto que será lo siguiente que vamos a crear. 
+     Como vimos en la primera parte de la clase, las URLs determinan "por donde se puede entrar" a la aplicación web, es por esto que será lo siguiente que vamos a crear. 
     
-        * Lo primero que harás es hacer que las urls de la todoapp queden disponibles en todo el project. 
+        * Lo primero que harás es hacer que las URLs de la todoapp queden disponibles en todo el project. 
             Para esto, debes ir al archivo *TODOproject/urls.py* y agregar la siguiente linea de código en la lista de `url_patterns`:
             ```python
             path('', include('todoapp.urls'))
@@ -178,7 +178,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
             ```python
           from django.urls import include
             ```    
-        * Ahora hay que crear las urls de la todoapp. Lo que harás es crear una url para que cuando alguien ingrese a 
+        * Ahora hay que crear las URLs de la todoapp. Lo que harás es crear una URL para que cuando alguien ingrese a 
         `127.0.0.1:8000/tareas` pueda ver sus tareas. 
             
             Para esto hay que crear un archivo llamado `urls.py` en la carpeta `todoapp`. En este archivo escribirás el siguiente código: 
@@ -191,8 +191,8 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
           ]         
 
             ```  
-            El método `path` hará un mapeo entre la el patrón de la url,
-         *en este caso 'tareas'*, con el método `tareas` de views.py, para saber qué hacer cuando alguien ingrese a esta url. 
+            El método `path` hará un mapeo entre el patrón de la URL,
+         *en este caso 'tareas'*, con el método `tareas` de views.py, para saber qué hacer cuando alguien ingrese a esta URL. 
                 
 5. **Crear views** 
 
