@@ -250,7 +250,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
         
         Esto lo hacemos así para distinguir entre las diferentes carpetas de templates de las diferentes aplicaciones que puede tener un mismo projecto Django. 
         
-        Finalmente hay que crear un archivo vacío llamado `index.html` en la carpeta todospp/templates/todoapp/.
+        Finalmente hay que crear un archivo vacío llamado `index.html` en la carpeta todoapp/templates/todoapp/.
         
         Al final de este paso las carpetas deberían quedar así:
          ```
