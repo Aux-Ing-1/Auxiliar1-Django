@@ -69,8 +69,8 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
    python manage.py startapp todoapp
    ```
    > Dato: se recomienda que en el nombre de la app solo hayan minúsculas, 
-   >y se puede utilizar _ para hacer el nombre mas legible.  
-   >Para mas guías de estilo para python puedes revisar [PEP 8](https://www.python.org/dev/peps/pep-0008/)
+   >y se puede utilizar _ para hacer el nombre más legible.  
+   >Para más guías de estilo para python puedes revisar [PEP 8](https://www.python.org/dev/peps/pep-0008/)
     *  
         La estructura de las carpetas debería quedar así:
         ```
@@ -97,7 +97,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
 
     Para que el project sepa que existe esta nueva app hay que agregarla a `installed_apps` en el archivo `settings.py` de `TODOproject`. 
     
-    Primero tienes que importar la app al inicio del archivo `settings.py` así : 
+    Primero tienes que importar la app al inicio del archivo `settings.py` así: 
        
     `import todoapp`
     
@@ -114,7 +114,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     'todoapp',
     ]
    ```        
-3. **Crear modelo Tarea**
+3. **Crear Modelo Tarea**
     Para crear la aplicación de lista de tareas debemos crear un *modelo* 
     que permitirá definir la información que guardaremos sobre cada Tarea.
     
