@@ -110,7 +110,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'categorias'
+    'categorias',
     'todoapp',
     ]
    ```        
