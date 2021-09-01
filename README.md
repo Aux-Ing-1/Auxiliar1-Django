@@ -230,25 +230,25 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
 6. **Recapitulemos** 
     
    Hasta ahora hemos creado *el modelo* Tarea,
-    *una url* llamada *tareas*, y 
+    *una URL* llamada *tareas*, y 
     *una view* que permite hacer render de un template (que aún no creamos) 
     y le entrega las tareas y categorías de la base de datos al template.
     
-    Para comprobar que no tenemos errores en este paso tendrás que correr la aplicación y entrar a la url *tareas*. 
+    Para comprobar que no tenemos errores en este paso tendrás que correr la aplicación y entrar a la URL *tareas*. 
     Para esto en la consola debes hacer `python manage.py runserver` y entrar al link `127.0.0.1:8000/tareas`. 
     
     Como aún no creamos un template llamado *index.html* deberías ver lo siguiente: 
     
     ![error sin template](error_sin_template.png)
     
-7. **Creación del template**
+7. **Creación del Template**
     
     Ahora vamos a crear el template para mostrar todas las tareas.
     * Lo primero que hay que hacer es crear una carpeta llamada templates dentro de todoapp. 
     
         Después, hay que crear una carpeta llamada todoapp, dentro de la carpeta templates que recién creamos. 
         
-        Esto lo hacemos así para distinguir entre las diferentes carpetas templates de las diferentes aplicaciones que tenga el mismo projecto Django. 
+        Esto lo hacemos así para distinguir entre las diferentes carpetas de templates de las diferentes aplicaciones que puede tener un mismo projecto Django. 
         
         Finalmente hay que crear un archivo vacío llamado `index.html` en la carpeta todospp/templates/todoapp/.
         
@@ -343,24 +343,24 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
           </body>
         </html>
         ``` 
-      En otra clase auxiliar se estudiará en profundidad los contenidos de html, css y js necesarios para trabajar con los templates. 
+      En otra clase auxiliar se estudiará en profundidad los contenidos de HTML y CSS necesarios para trabajar con los templates. 
       
       Por ahora es importante notar que hay código escrito entre doble llave `{{variable}}` 
       y otras partes del código escritas así: `{% codigo %}`.
-      Esta es la sintaxis de los templates de Django que permite acceder a las variables que la views le envía al template,
-      y usar algunas operaciones simples como condiciones, ciclos, entre otras. 
-      Para mas información puedes leer [aquí](https://docs.djangoproject.com/en/3.1/topics/templates/#the-django-template-language). 
+      Esta es la sintaxis de los templates de Django que permite acceder a las variables que la view le envía al template,
+      y usar algunas operaciones simples como condiciones y ciclos, entre otras. 
+      Para más información puedes leer [aquí](https://docs.djangoproject.com/en/3.1/topics/templates/#the-django-template-language). 
       
     * Ahora si corres la aplicación web y entras a `127.0.0.1:8000/tareas` deberías ver el formulario para crear una tarea. 
     
-        >Las categorias que aparecen ahí fueron creadas en el proyecto original que descargaste. Al final de la auxiliar podrás ver como editarlas y agregar nuevas.  
+        >Las categorías que aparecen ahí fueron creadas en el proyecto original que descargaste. Al final de la auxiliar podrás ver cómo editarlas y agregar nuevas.  
     
-        >Por otro lado, no le has indicado al proyecto qué hacer cuando se seleccione el botón agregar tarea, por lo tanto al agregar una tarea aparecerá un error. 
+        >Por otro lado, no le hemos indicado al proyecto qué hacer cuando se seleccione el botón agregar tarea, por lo tanto al agregar una tarea aparecerá un error. 
 
-    7.1 **Entender formulario html**
+    7.1 **Entender Formulario HTML**
    
-    A continuación se encuentra la estructura que tiene un formulario en HTML y para qué sirve cada línea. 
-    Es importante tener una noción de cómo funcionan estos formularios para entender como procesarlos en `views.py`.
+    A continuación se encuentra la estructura que tiene un formulario HTML y para qué sirve cada línea. 
+    Es importante tener una noción de cómo funcionan estos formularios para entender cómo procesarlos en `views.py`.
     ```html
        <form action="" method="post"> <!-- Inicio del form, la información se enviará por POST -->
            {% csrf_token %} <!-- csrf token para seguridad -->
@@ -373,13 +373,13 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
        </form>
     ```
         
-8. **Agregar tarea en views.py**  
+8. **Agregar Tarea en views.py**  
     
     El template que creaste en el paso anterior contiene un formulario para agregar nuevas tareas, 
     así que en este paso vas a crear el código para que esto funcione. 
     
-    Como para cargar página se utilizó el método `tareas` de `views.py` para recibir el formulario se utilizará el mismo método. 
-    En general, los formularios se envían por POST por lo tanto en el método `tareas` podremos tomar la información del formulario solo si `request.method=="POST"`. 
+    Para cargar la página se utilizó el método `tareas` de `views.py` y para recibir el formulario se utilizará el mismo método. 
+    En general, los formularios se envían por POST, por lo tanto en el método `tareas` podremos tomar la información del formulario solo si `request.method=="POST"`. 
     
     Ahora crearás un código que verifica si la request fue de tipo POST 
     y luego tomará el título, el contenido y la categoría que vienen en el formulario para crear una nueva Tarea en la base de datos. 
@@ -412,7 +412,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
             return redirect("/tareas")  # recargar la página.
 
     ```
-    En el código anterior si la request es POST y si la persona seleccionó *Agregar tarea*, 
+    En el código anterior si la request es POST y la persona seleccionó *Agregar tarea*, 
     se tomará cada valor que venía en el formulario y se creará la nueva tarea. 
     
      > Es importante destacar que en el código hay una variable llamada `nombre_categoria` y otra llamada `categoria`, 
@@ -422,7 +422,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
      
      > La segunda corresponde a una instancia del modelo Categoria, que será la llave foránea de nuestra nueva Tarea. 
     
-9. **Probar la aplicación** 
+9. **Probar la Aplicación** 
     
     Ahora si corres la aplicación con `python manage.py runserver` y entras a `127.0.0.1:8000/tareas` verás la aplicación web funcionando 
     y podrás agregar tareas.  
@@ -436,7 +436,7 @@ admin.site.register(Tarea)
 
 ```
 
-En la consola hacer: `python manage.py createsuperuser` y crear un superusarie que podrá acceder al panel de administrador y editar elementos de la base de datos. 
+En la consola hacer: `python manage.py createsuperuser` y crear un superusarix que podrá acceder al panel de administrador y editar elementos de la base de datos. 
 
 
 Finalmente correr la aplicación web y entrar a 127.0.0.1:8000/admin y loguearse con la cuenta recién creada. 
