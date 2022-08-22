@@ -124,17 +124,17 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     
    * El primer modelo que crearás es el modelo Tarea con todos sus atributos, para esto copia el siguiente código en `todoapp/models.py`:
         ```python
-     from django.utils import timezone
-     from categorias.models import Categoria
+        from django.utils import timezone
+        from categorias.models import Categoria
 
-     class Tarea(models.Model):  # Todolist able name that inherits models.Model
-         titulo = models.CharField(max_length=250)  # un varchar
-         contenido = models.TextField(blank=True)  # un text
-         fecha_creación = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))  # un date
-         categoria = models.ForeignKey(Categoria, default="general", on_delete=models.CASCADE)  # la llave foránea
-    
-         def __str__(self):
-             return self.titulo  # name to be shown when called
+        class Tarea(models.Model):  # Todolist able name that inherits models.Model
+            titulo = models.CharField(max_length=250)  # un varchar
+            contenido = models.TextField(blank=True)  # un text
+            fecha_creación = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))  # un date
+            categoria = models.ForeignKey(Categoria, default="general", on_delete=models.CASCADE)  # la llave foránea
+
+            def __str__(self):
+                return self.titulo  # name to be shown when called
         ```
    
         .
@@ -183,12 +183,12 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
             
             Para esto hay que crear un archivo llamado `urls.py` en la carpeta `todoapp`. En este archivo escribirás el siguiente código: 
             ```python
-          from django.urls import path
-          from . import views
-        
-          urlpatterns = [
-              path('tareas', views.tareas, name='mis_tareas'),
-          ]         
+            from django.urls import path
+            from . import views
+
+            urlpatterns = [
+                path('tareas', views.tareas, name='mis_tareas'),
+            ]         
 
             ```  
             El método `path` hará un mapeo entre el patrón de la URL,
@@ -201,19 +201,19 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     
     En el archivo *todoapp/views.py* tendrás que pegar este código que explicaremos luego: 
     ```python
-   from django.shortcuts import render, redirect
+    from django.shortcuts import render, redirect
 
-   # Create your views here.
-   from todoapp.models import Tarea
-   from categorias.models import Categoria
-    
-    
-   def tareas(request): #the index view
-       mis_tareas = Tarea.objects.all()  # quering all todos with the object manager
-       categorias = Categoria.objects.all()  # getting all categories with object manager
-    
-       if request.method == "GET":
-           return render(request, "todoapp/index.html", {"tareas": mis_tareas, "categorias": categorias})
+    # Create your views here.
+    from todoapp.models import Tarea
+    from categorias.models import Categoria
+
+
+    def tareas(request): #the index view
+        mis_tareas = Tarea.objects.all()  # quering all todos with the object manager
+        categorias = Categoria.objects.all()  # getting all categories with object manager
+
+        if request.method == "GET":
+            return render(request, "todoapp/index.html", {"tareas": mis_tareas, "categorias": categorias})
 
     ```
    Los métodos de las views siempre deben recibir una request, porque ahí se encuentra la información de la request HTTP.
