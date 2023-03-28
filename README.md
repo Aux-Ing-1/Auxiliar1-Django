@@ -1,4 +1,4 @@
-# Auxiliar2-Django
+# Auxiliar2: Django
 En esta auxiliar crearás una aplicación web que permitirá mostrar una lista de tareas. 
 Estas tareas tendrán una categoría que luego podrían servir para hacer algún filtro. 
 La información de las categorías viene pre-hecha y la base de datos ya contiene algunas categorías. 
@@ -7,39 +7,80 @@ La aplicación tendrá una sola página y se verá así:
 ![app final](app_final.png)
 
 ## Configuración del Ambiente de Trabajo
-El primer paso en esta auxiliar será crear un ambiente virtual donde estará toda la configuración de Python 
-para este proyecto en específico. 
-Dado que DjangoGirls explica muy bien cómo hacer esto, debes seguir los pasos de [este tutorial](https://tutorial.djangogirls.org/es/django_installation/) hasta donde activan el ambiente virtual. 
-Al tener el ambiente virtual activado, vuelve aquí para el siguiente paso. 
+El primer paso en esta auxiliar será crear un ambiente virtual donde estará toda la configuración de Python para este proyecto en específico. 
+
+Un entorno virtual aísla tu configuración de Python/Django para cada proyecto. 
+
+Primero queremos encontrar un directorio en el que quieras crear el entorno virtual (o *virtualenv*). Puede ser en tu directorio home (/home/Name en Linux o en C:\Users\Name en Windows, donde 'Name' es tu nombre de usuario).
+
+> En windows, asegurate que tu directorio no contiene caracteres especiales o acentuados.
+
+Para este tutorial usaremos un nuevo directorio `cc4401-aux` en tu directorio home.
+
+```
+$ mkdir cc4401-aux
+$ cd cc4401-aux
+```
+
+Crearemos entonces el ambiente virtual llamado `auxiliar`. El comando para ello es:
+
+```
+$ python -m venv auxiliar
+```
+
+> Su ambiente virtual debe estar en minúsculas y no contener espacios.
+
+El comando anterior creará un directorio llamado `auxiliar` que contiene el entorno virtual (muchos archivos y carpetas).
+
+Ahora deberás iniciar el entorno virtual ejecutando para Windows:
+
+```
+C:\Users\Name\cc4401-aux> myenv\Scripts\activate
+```
+
+Y para Linux:
+
+```
+$ source myvenv/bin/activate
+```
+
+Sabŕas que tienes tu ambiente virtual iniciado cuando veas que en la línea d comando en tu consola tiene el prefijo `(auxiliar)`
+
+Ahora que tenemos nuestro entorno virtual iniciado, podemos instalar las dependencias de nuestro proyecto, pero antes de eso, debemos aseguirarnos de tener la última versión de pip, el software que utilizamos para instalar Django:
+
+```
+(myvenv) ~$ python -m pip install --upgrade pip
+```
+
+Ya estaría todo listo para continuar con el siguiente paso.
+
+> Instrucciones más detalladas de esta parte del tutorial fueron sacadas de [este tutorial](https://tutorial.djangogirls.org/es/django_installation/).
 
 ## Descargar e Instalar TODO Project 
 En la auxiliar de hoy no vas a comenzar un proyecto de Django desde 0 
 sino que usarás un proyecto que ya está configurado con lo básico para crear la aplicación web de tareas.   
 
-1. 
-    La primera tarea es hacer Fork y Clone de este mismo repositorio. 
+1.  La primera tarea es hacer Fork y Clone de este mismo repositorio. 
     > Si no recuerdas cómo hacerlo puedes revisar la [auxiliar de GIT](https://github.com/Aux-Ing-1/Auxiliar1-GIT). 
-2. 
-    Para entrar a la carpeta donde está el proyecto hay que hacer `cd Auxiliar2-Django` en la consola. 
+2.  Para entrar a la carpeta donde está el proyecto hay que hacer `cd Auxiliar2-Django` en la consola. 
 3. 
     Para poder utilizar esta app hay que instalar los paquetes que el proyecto requiere. 
-    Para esto instalaremos la lista de paquetes que viene en el archivo `requirements.txt` con el siguiente comando: 
+    Para esto instalaremos la lista de paquetes que viene en el archivo `requirements.txt` con el siguiente comando (RECUERDA TENER EL AMBIENTE VIRTUAL ACTIVO): 
     ```
-   pip install -r requirements.txt
-   ```
+    (auxiliar) pip install -r requirements.txt
+    ```
 4. 
     El project de Django trae algunas tablas de la base de datos pre hechas, 
     por lo tanto tenemos que avisarle que actualice sus tablas con el siguiente comando: 
     ```
-   python manage.py migrate
-   ``` 
+    (auxiliar) python manage.py migrate
+    ``` 
 5.
     Habiendo configurado el proyecto en tu computador deberías poder acceder a la aplicación web con el siguiente comando:
     ```
-   python manage.py runserver
-   ```   
-   Al entrar a `http://127.0.0.1:8000/` deberías ver lo siguiente: 
-   ![Proyecto instalado](proyecto_instalado.png) 
+    (auxiliar) python manage.py runserver
+    ```   
+    Al entrar a `http://127.0.0.1:8000/` deberías ver lo siguiente: ![Proyecto instalado](proyecto_instalado.png) 
 
 5. 
     La estructura de las carpetas debería quedar así:
@@ -57,8 +98,10 @@ sino que usarás un proyecto que ya está configurado con lo básico para crear 
     └───requirements.txt 
 
     ```    
+
+    > De aquí en adelante vamos a obviar que están en el ambiente virtual, por lo que no aparecerá (auxiliar) en los comandos.
           
-## Crear una Nueva app: todoapp 
+## Crear una nueva app: todoapp 
 Como se explicó en la clase, Django está compuesto por apps que forman las diferentes partes de la aplicación web. 
 Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llamará **todoapp**. 
 
@@ -143,7 +186,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
         > El atributo título será un CharField con un largo máximo de 250 caracteres. [Aquí](https://docs.djangoproject.com/en/3.1/ref/models/fields/#field-types)  hay mas información sobre Fields.  
     
         > En este modelo utilizamos atributos de diferentes tipos como texto y fechas. 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+           
         > La variable blank=True en el atributo `contenido` indica que este atributo puede estar en blanco. 
     
         > La variable default = ... en el atributo `fecha_creacion` indica que si no se entrega una fecha de creación, por defecto se pondrá la fecha actual.   
@@ -158,8 +201,8 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
         
         Para hacer esto pondremos los siguientes comandos en la terminal: 
         ```
-            python manage.py makemigrations
-            python manage.py migrate
+        python manage.py makemigrations
+        python manage.py migrate
        ```
        Después de hacer estos dos comandos puedes ver que la carpeta *todoapp/migrations* tiene un nuevo archivo, 
        con todos los cambios que hiciste a los modelos. 
