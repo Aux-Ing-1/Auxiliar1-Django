@@ -36,13 +36,13 @@ El comando anterior creará un directorio llamado `auxiliar` que contiene el ent
 Ahora deberás iniciar el entorno virtual ejecutando para Windows:
 
 ```
-C:\Users\Name\cc4401-aux> myenv\Scripts\activate
+C:\Users\Name\cc4401-aux> auxiliar\Scripts\activate
 ```
 
 Y para Linux:
 
 ```
-$ source myvenv/bin/activate
+$ source auxiliar/bin/activate
 ```
 
 Sabŕas que tienes tu ambiente virtual iniciado cuando veas que en la línea d comando en tu consola tiene el prefijo `(auxiliar)`
