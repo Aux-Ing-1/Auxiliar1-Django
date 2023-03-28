@@ -49,7 +49,7 @@ Sabŕas que tienes tu ambiente virtual iniciado cuando veas que en la línea d c
 Ahora que tenemos nuestro entorno virtual iniciado, podemos instalar las dependencias de nuestro proyecto, pero antes de eso, debemos aseguirarnos de tener la última versión de pip, el software que utilizamos para instalar Django:
 
 ```
-(myvenv) ~$ python -m pip install --upgrade pip
+(auxiliar) ~$ python -m pip install --upgrade pip
 ```
 
 Ya estaría todo listo para continuar con el siguiente paso.
