@@ -1,4 +1,4 @@
-# Auxiliar 2: Django
+# Auxiliar 1: Django
 
 En esta auxiliar crearás una aplicación web que permitirá mostrar una lista de tareas. 
 Estas tareas tendrán una categoría que luego podrían servir para hacer algún filtro. 
