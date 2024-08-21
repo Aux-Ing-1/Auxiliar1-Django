@@ -63,7 +63,7 @@ sino que usarás un proyecto que ya está configurado con lo básico para crear 
 
 1.  La primera tarea es hacer Fork y Clone de este mismo repositorio. 
     > Si no recuerdas cómo hacerlo puedes revisar la [auxiliar de GIT](https://github.com/Aux-Ing-1/Auxiliar1-GIT). 
-2.  Para entrar a la carpeta donde está el proyecto hay que hacer `cd Auxiliar2-Django` en la consola. 
+2.  Para entrar a la carpeta donde está el proyecto hay que hacer `cd Auxiliar1-Django` en la consola. 
 3. 
     Para poder utilizar esta app hay que instalar los paquetes que el proyecto requiere. 
     Para esto instalaremos la lista de paquetes que viene en el archivo `requirements.txt` con el siguiente comando (RECUERDA TENER EL AMBIENTE VIRTUAL ACTIVO): 
