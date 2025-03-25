@@ -168,6 +168,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     
    * El primer modelo que crearás es el modelo Tarea con todos sus atributos, para esto copia el siguiente código en `todoapp/models.py`:
         ```python
+        from django.db import models
         from django.utils import timezone
         from categorias.models import Categoria
 
