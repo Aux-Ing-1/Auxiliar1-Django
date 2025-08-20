@@ -120,7 +120,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
     *  
         La estructura de las carpetas debería quedar así:
         ```
-        Auxiliar2-Django
+        Auxiliar1-Django
         ├───manage.py
         ├───TODOproject
         │   ├───settings.py
@@ -183,8 +183,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
             def __str__(self):
                 return self.titulo  # name to be shown when called
         ```
-   
-        .
+        
         > La clase Tarea hereda de models.Model para tener todas las características de un model de Django. 
     
         > El atributo título será un CharField con un largo máximo de 250 caracteres. [Aquí](https://docs.djangoproject.com/en/3.1/ref/models/fields/#field-types)  hay mas información sobre Fields.  
@@ -301,7 +300,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
         
         Al final de este paso las carpetas deberían quedar así:
          ```
-        Auxiliar2-Django
+        Auxiliar1-Django
         ├───manage.py
         ├───TODOproject
         │   settings.py
@@ -313,7 +312,7 @@ Para esta auxiliar solo haremos una app con toda la funcionalidad. Esta se llama
         │   │   001_initial.py
         │   ├───templates
         │   │   ├───todoapp
-        │   │      index.html
+        │   │       index.html
         │   admin.py
         │   apps.py
         │   models.py
