@@ -76,7 +76,8 @@ sino que usarás un proyecto que ya está configurado con lo básico para crear 
     por lo tanto tenemos que avisarle que actualice sus tablas con el siguiente comando: 
     ```
     (auxiliar) python manage.py migrate
-    ``` 
+    ```
+    > Si en este paso o en el siguiente arroja algún WARNING en consola, simplemente ignoralo por ahora.
 5.
     Habiendo configurado el proyecto en tu computador deberías poder acceder a la aplicación web con el siguiente comando:
     ```
@@ -87,7 +88,7 @@ sino que usarás un proyecto que ya está configurado con lo básico para crear 
 5. 
     La estructura de las carpetas debería quedar así:
     ``` 
-    Auxiliar2-Django
+    Auxiliar1-Django
     ├───manage.py
     ├───TODOproject
     │   │ settings.py
