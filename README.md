@@ -28,6 +28,7 @@ Crearemos entonces el ambiente virtual llamado `auxiliar`. El comando para ello 
 ```
 $ python -m venv auxiliar
 ```
+> Si no te funciona el comando `python`, prueba con `python3` o `py`.
 
 > Su ambiente virtual debe estar en minúsculas y no contener espacios.
 
@@ -39,13 +40,13 @@ Ahora deberás iniciar el entorno virtual ejecutando para Windows:
 C:\Users\Name\cc4401-aux> auxiliar\Scripts\activate
 ```
 
-Y para Linux:
+Y para Linux o macOS:
 
 ```
 $ source auxiliar/bin/activate
 ```
 
-Sabŕas que tienes tu ambiente virtual iniciado cuando veas que en la línea d comando en tu consola tiene el prefijo `(auxiliar)`
+Sabŕas que tienes tu ambiente virtual iniciado cuando veas que en la línea de comando en tu consola tiene el prefijo `(auxiliar)`
 
 Ahora que tenemos nuestro entorno virtual iniciado, podemos instalar las dependencias de nuestro proyecto, pero antes de eso, debemos aseguirarnos de tener la última versión de pip, el software que utilizamos para instalar Django:
 
